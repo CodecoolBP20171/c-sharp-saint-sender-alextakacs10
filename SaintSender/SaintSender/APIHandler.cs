@@ -27,21 +27,31 @@ namespace SaintSender
 
         static IList<Message> MessageResponse = MessageListRequest.Execute().Messages;
         static IList<Label> LabelResponse = LabelListRequest.Execute().Labels;
-
-        public IList<Message> GetMessages(string labelId)
+                
+        private async Task<IList<Message>> GetAllMessages()
         {
             IList<Message> Messages = new List<Message>();
 
             foreach (Message message in MessageResponse)
             {
-                Message MessageObject = service.Users.Messages.Get("me", message.Id).Execute();
-                if(MessageObject.LabelIds.Contains(labelId))
+                Message MessageObject = await service.Users.Messages.Get("me", message.Id).ExecuteAsync();
+                Messages.Add(MessageObject);
+            }
+            return Messages;
+        }
+
+        public async Task<IList<Message>> GetMessages(string labelId)
+        {
+            IList<Message> allMessages = await GetAllMessages();
+            IList<Message> labeledMessages = new List<Message>();
+            foreach (Message message in allMessages)
+            {
+                if (message.LabelIds.Contains(labelId))
                 {
-                    Messages.Add(MessageObject);
+                    labeledMessages.Add(message);
                 }
             }
-
-            return Messages;
+            return labeledMessages;
         }
 
         public string GetSubject(MessagePart messagePart)

@@ -17,15 +17,25 @@ namespace SaintSender
             InitializeComponent();
         }
 
-        private void MailForm_Load(object sender, EventArgs e)
+        private void MailForm_Load (object sender, EventArgs e)
+        {
+            PopulateTabs();
+        }
+
+        private async void PopulateTabs()
         {
             APIHandler api = new APIHandler();
             Populator populator = new Populator();
 
-            populator.Populate(InboxMessages, "INBOX");
-            populator.Populate(SocialMessages, "CATEGORY_SOCIAL");
-            populator.Populate(PromoMessages, "CATEGORY_PROMOTIONS");
+            var inboxMessages = await populator.Populate("INBOX");
+            var socialMessages = await populator.Populate("CATEGORY_SOCIAL");
+            var promoMessages = await populator.Populate("CATEGORY_PROMOTIONS");
+            InboxWaitLabel.Visible = false;
 
+            foreach (var objectToAdd in inboxMessages)
+            {
+                InboxMessages.Items.Add(new ListViewItem(objectToAdd));
+            }
         }
     }
 }

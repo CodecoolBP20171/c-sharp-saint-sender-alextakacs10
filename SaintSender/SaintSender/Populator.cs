@@ -18,17 +18,19 @@ namespace SaintSender
     {
         APIHandler gmailAPI = new APIHandler();
         
-        public void Populate(ListView targetListView, string labelId)
+        public async Task<IList<string[]>> Populate(string labelId)
         {
-            IList<Google.Apis.Gmail.v1.Data.Message> Messages = gmailAPI.GetMessages(labelId);
+            IList<Google.Apis.Gmail.v1.Data.Message> Messages = await gmailAPI.GetMessages(labelId);
+            IList<string[]> result = new List<string[]>();
             foreach (Google.Apis.Gmail.v1.Data.Message message in Messages)
             {
                 String[] newObject = new String[2];
                 newObject[0] = gmailAPI.GetSubject(message.Payload);
                 newObject[1] = message.Id;
-                targetListView.Items.Add(new ListViewItem(newObject));
+                result.Add(newObject);
             }
 
+            return result;
         }
     }
 }

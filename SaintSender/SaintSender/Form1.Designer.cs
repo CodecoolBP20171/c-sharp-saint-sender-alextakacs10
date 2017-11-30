@@ -43,14 +43,19 @@
             this.SocialSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SocialFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PromoTab = new System.Windows.Forms.TabPage();
-            this.UpdateTab = new System.Windows.Forms.TabPage();
             this.PromoMessages = new System.Windows.Forms.ListView();
             this.PromoSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PromoFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UpdateTab = new System.Windows.Forms.TabPage();
+            this.InboxWaitLabel = new System.Windows.Forms.Label();
+            this.SocialWaitLabel = new System.Windows.Forms.Label();
+            this.PromoWaitLabel = new System.Windows.Forms.Label();
+            this.UpdateWaitLabel = new System.Windows.Forms.Label();
             this.AllMessagesTab.SuspendLayout();
             this.PrimaryTab.SuspendLayout();
             this.SocialTab.SuspendLayout();
             this.PromoTab.SuspendLayout();
+            this.UpdateTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // RefreshButton
@@ -136,17 +141,19 @@
             // 
             // PrimaryTab
             // 
+            this.PrimaryTab.Controls.Add(this.InboxWaitLabel);
             this.PrimaryTab.Controls.Add(this.InboxMessages);
             this.PrimaryTab.Location = new System.Drawing.Point(4, 22);
             this.PrimaryTab.Name = "PrimaryTab";
             this.PrimaryTab.Padding = new System.Windows.Forms.Padding(3);
             this.PrimaryTab.Size = new System.Drawing.Size(321, 344);
             this.PrimaryTab.TabIndex = 0;
-            this.PrimaryTab.Text = "Primary";
+            this.PrimaryTab.Text = "Inbox";
             this.PrimaryTab.UseVisualStyleBackColor = true;
             // 
             // SocialTab
             // 
+            this.SocialTab.Controls.Add(this.SocialWaitLabel);
             this.SocialTab.Controls.Add(this.SocialMessages);
             this.SocialTab.Location = new System.Drawing.Point(4, 22);
             this.SocialTab.Name = "SocialTab";
@@ -180,6 +187,7 @@
             // 
             // PromoTab
             // 
+            this.PromoTab.Controls.Add(this.PromoWaitLabel);
             this.PromoTab.Controls.Add(this.PromoMessages);
             this.PromoTab.Location = new System.Drawing.Point(4, 22);
             this.PromoTab.Name = "PromoTab";
@@ -188,16 +196,6 @@
             this.PromoTab.TabIndex = 2;
             this.PromoTab.Text = "Promotions";
             this.PromoTab.UseVisualStyleBackColor = true;
-            // 
-            // UpdateTab
-            // 
-            this.UpdateTab.Location = new System.Drawing.Point(4, 22);
-            this.UpdateTab.Name = "UpdateTab";
-            this.UpdateTab.Padding = new System.Windows.Forms.Padding(3);
-            this.UpdateTab.Size = new System.Drawing.Size(321, 344);
-            this.UpdateTab.TabIndex = 3;
-            this.UpdateTab.Text = "Updates";
-            this.UpdateTab.UseVisualStyleBackColor = true;
             // 
             // PromoMessages
             // 
@@ -212,6 +210,57 @@
             this.PromoMessages.TabIndex = 0;
             this.PromoMessages.UseCompatibleStateImageBehavior = false;
             this.PromoMessages.View = System.Windows.Forms.View.Details;
+            // 
+            // UpdateTab
+            // 
+            this.UpdateTab.Controls.Add(this.UpdateWaitLabel);
+            this.UpdateTab.Location = new System.Drawing.Point(4, 22);
+            this.UpdateTab.Name = "UpdateTab";
+            this.UpdateTab.Padding = new System.Windows.Forms.Padding(3);
+            this.UpdateTab.Size = new System.Drawing.Size(321, 344);
+            this.UpdateTab.TabIndex = 3;
+            this.UpdateTab.Text = "Updates";
+            this.UpdateTab.UseVisualStyleBackColor = true;
+            // 
+            // InboxWaitLabel
+            // 
+            this.InboxWaitLabel.AutoSize = true;
+            this.InboxWaitLabel.Location = new System.Drawing.Point(120, 150);
+            this.InboxWaitLabel.Name = "InboxWaitLabel";
+            this.InboxWaitLabel.Size = new System.Drawing.Size(70, 13);
+            this.InboxWaitLabel.TabIndex = 5;
+            this.InboxWaitLabel.Text = "Please wait...";
+            this.InboxWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SocialWaitLabel
+            // 
+            this.SocialWaitLabel.AutoSize = true;
+            this.SocialWaitLabel.Location = new System.Drawing.Point(120, 150);
+            this.SocialWaitLabel.Name = "SocialWaitLabel";
+            this.SocialWaitLabel.Size = new System.Drawing.Size(70, 13);
+            this.SocialWaitLabel.TabIndex = 6;
+            this.SocialWaitLabel.Text = "Please wait...";
+            this.SocialWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PromoWaitLabel
+            // 
+            this.PromoWaitLabel.AutoSize = true;
+            this.PromoWaitLabel.Location = new System.Drawing.Point(120, 150);
+            this.PromoWaitLabel.Name = "PromoWaitLabel";
+            this.PromoWaitLabel.Size = new System.Drawing.Size(70, 13);
+            this.PromoWaitLabel.TabIndex = 6;
+            this.PromoWaitLabel.Text = "Please wait...";
+            this.PromoWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // UpdateWaitLabel
+            // 
+            this.UpdateWaitLabel.AutoSize = true;
+            this.UpdateWaitLabel.Location = new System.Drawing.Point(120, 150);
+            this.UpdateWaitLabel.Name = "UpdateWaitLabel";
+            this.UpdateWaitLabel.Size = new System.Drawing.Size(70, 13);
+            this.UpdateWaitLabel.TabIndex = 6;
+            this.UpdateWaitLabel.Text = "Please wait...";
+            this.UpdateWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MailForm
             // 
@@ -229,8 +278,13 @@
             this.Load += new System.EventHandler(this.MailForm_Load);
             this.AllMessagesTab.ResumeLayout(false);
             this.PrimaryTab.ResumeLayout(false);
+            this.PrimaryTab.PerformLayout();
             this.SocialTab.ResumeLayout(false);
+            this.SocialTab.PerformLayout();
             this.PromoTab.ResumeLayout(false);
+            this.PromoTab.PerformLayout();
+            this.UpdateTab.ResumeLayout(false);
+            this.UpdateTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +311,10 @@
         private System.Windows.Forms.ListView PromoMessages;
         private System.Windows.Forms.ColumnHeader PromoSubject;
         private System.Windows.Forms.ColumnHeader PromoFrom;
+        private System.Windows.Forms.Label InboxWaitLabel;
+        private System.Windows.Forms.Label SocialWaitLabel;
+        private System.Windows.Forms.Label PromoWaitLabel;
+        private System.Windows.Forms.Label UpdateWaitLabel;
     }
 }
 
