@@ -31,11 +31,31 @@ namespace SaintSender
             var socialMessages = await populator.Populate("CATEGORY_SOCIAL");
             var promoMessages = await populator.Populate("CATEGORY_PROMOTIONS");
             InboxWaitLabel.Visible = false;
+            SocialWaitLabel.Visible = false;
+            PromoWaitLabel.Visible = false;
+            InboxMessages.Cursor = Cursors.Default;
+            SocialMessages.Cursor = Cursors.Default;
+            PromoMessages.Cursor = Cursors.Default;
+
 
             foreach (var objectToAdd in inboxMessages)
             {
                 InboxMessages.Items.Add(new ListViewItem(objectToAdd));
             }
+
+            foreach (var objectToAdd in socialMessages)
+            {
+                SocialMessages.Items.Add(new ListViewItem(objectToAdd));
+            }
+
+            foreach (var objectToAdd in promoMessages)
+            {
+                PromoMessages.Items.Add(new ListViewItem(objectToAdd));
+            }
+        }
+
+        private void InboxMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -34,8 +34,10 @@ namespace SaintSender
 
             foreach (Message message in MessageResponse)
             {
-                Message MessageObject = await service.Users.Messages.Get("me", message.Id).ExecuteAsync();
-                Messages.Add(MessageObject);
+                var request = service.Users.Messages.Get("me", message.Id);
+                request.Format = UsersResource.MessagesResource.GetRequest.FormatEnum.Metadata;
+                Message response = await request.ExecuteAsync();
+                Messages.Add(response);
             }
             return Messages;
         }
@@ -62,10 +64,31 @@ namespace SaintSender
             {
                 if(header.Name == "Subject")
                 {
-                    subject = header.Value;
+                    if(header.Value != "")
+                    {
+                        subject = header.Value;
+                    } else
+                    {
+                        subject = "(No subject)";
+                    }
+
                 }
             }
             return subject;
+        }
+
+        public string GetSender(MessagePart messagePart)
+        {
+            IList<MessagePartHeader> headers = messagePart.Headers;
+            string sender = "Unknown user";
+            foreach (MessagePartHeader header in headers)
+            {
+                if (header.Name == "From")
+                {
+                    sender = header.Value;
+                }
+            }
+            return sender;
         }
 
         private static UserCredential CreateCredentials()

@@ -25,12 +25,13 @@ namespace SaintSender
             foreach (Google.Apis.Gmail.v1.Data.Message message in Messages)
             {
                 String[] newObject = new String[2];
-                newObject[0] = gmailAPI.GetSubject(message.Payload);
-                newObject[1] = message.Id;
+                newObject[0] = gmailAPI.GetSender(message.Payload);
+                newObject[1] = gmailAPI.GetSubject(message.Payload);
                 result.Add(newObject);
             }
 
             return result;
         }
+
     }
 }
